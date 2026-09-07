@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Astro · 个人主页</title>
+  <meta name="description" content="这是我的个人网站，记录我做过的事情与正在学习的东西。" />
+  <meta property="og:title" content="Astro · 个人主页" />
+  <meta property="og:description" content="这是我的个人网站，记录我做过的事情与正在学习的东西。" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%236366f1'/%3E%3Cstop offset='1' stop-color='%23a855f7'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='46' fill='url(%23g)'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- 进度条：页面滚动时顶部显示的彩色细线 -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ============ 导航栏 ============ -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#home">
+        <span class="brand-name">Astro</span>
+      </a>
+
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="打开菜单">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav-menu" id="nav-menu" aria-label="主导航">
+        <a href="#home" class="nav-link">首页</a>
+        <a href="#about" class="nav-link">关于</a>
+        <a href="#portfolio" class="nav-link">作品集</a>
+        <a href="#contact" class="nav-link">联系</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换深色 / 浅色主题">
+          <svg id="icon-sun" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+          </svg>
+          <svg id="icon-moon" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ 首页 / 英雄区 ============ -->
+    <section class="hero" id="home">
+      <div class="container hero-inner">
+        <p class="hero-greeting">你好，我是</p>
+        <h1 class="hero-name">Astro</h1>
+        <p class="hero-type">
+          <span class="type-prefix">我是一名</span>
+          <span class="type-text" id="type-text"></span><span class="type-cursor" aria-hidden="true"></span>
+        </p>
+        <p class="hero-bio">
+          一句话介绍自己：你的方向、你的热爱，或者你正在做的事。
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#portfolio">查看我的作品</a>
+          <a class="btn btn-ghost" href="#contact">和我联系</a>
+        </div>
+        <div class="hero-social" aria-label="社交链接">
+          <a href="https://github.com/xuexi10" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.53-1.32-1.28-1.67-1.28-1.67-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.75 2.69 1.25 3.34.95.1-.74.4-1.25.72-1.53-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.16 1.18a11 11 0 0 1 5.76 0c2.2-1.49 3.16-1.18 3.16-1.18.62 1.59.23 2.76.11 3.05.73.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12v3.14c0 .3.21.66.8.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/>
+            </svg>
+          </a>
+          <a href="https://blog.example.com" target="_blank" rel="noopener noreferrer" aria-label="博客">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+          </a>
+          <a href="mailto:you@example.com" aria-label="发邮件">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+              <path d="m22 7-10 6L2 7"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="hero-wave" aria-hidden="true">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+          <path d="M0,64 C240,110 480,10 720,48 C960,86 1200,110 1440,48 L1440,120 L0,120 Z"></path>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ============ 关于我 ============ -->
+    <section class="section" id="about">
+      <div class="container">
+        <h2 class="section-title">关于我</h2>
+        <p class="section-subtitle">About Me</p>
+
+        <div class="about-grid">
+          <div class="card about-card reveal">
+            <h3>个人简介</h3>
+            <p>
+              你好！我是<strong>Astro</strong>，目前是一名 <strong>你的职位 / 学生身份</strong>，坐标 <strong>你的城市</strong>。
+              我喜欢<strong>你的兴趣领域</strong>，平时会研究 <strong>方向一、方向二</strong> 之类的话题。
+            </p>
+            <p>
+              这个网站既是我记录成长的地方，也是向大家展示我作品的窗口。如果这里的内容对你有帮助，
+              或者你想和我聊聊合作，欢迎通过下方联系方式找到我。
+            </p>
+          </div>
+          <div class="card about-card reveal">
+            <h3>基本信息</h3>
+            <ul class="info-list">
+              <li><span class="info-label">姓名</span><span>Astro</span></li>
+              <li><span class="info-label">所在地</span><span>城市 / 国家</span></li>
+              <li><span class="info-label">邮箱</span><span><a href="mailto:you@example.com">you@example.com</a></span></li>
+              <li><span class="info-label">GitHub</span><span><a href="https://github.com/xuexi10" target="_blank" rel="noopener noreferrer">github.com/xuexi10</a></span></li>
+              <li><span class="info-label">个人标签</span>
+                <span class="tag-group">
+                  <span class="tag">热爱学习</span>
+                  <span class="tag">喜欢折腾</span>
+                  <span class="tag">乐于分享</span>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 作品集 ============ -->
+    <section class="section" id="portfolio">
+      <div class="container">
+        <h2 class="section-title">作品集</h2>
+        <p class="section-subtitle">Portfolio</p>
+
+        <div class="projects-grid">
+          <article class="project-card card reveal">
+            <div class="project-thumb" aria-hidden="true">🖥</div>
+            <h3>作品一名称</h3>
+            <p>用一两句话描述这个作品做了什么、有什么亮点，或者贴一条简短的作品说明。</p>
+            <div class="project-tags">
+              <span class="tag">技术栈 A</span>
+              <span class="tag">技术栈 B</span>
+              <span class="tag">技术栈 C</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/xuexi10" target="_blank" rel="noopener noreferrer">源码 ↗</a>
+              <a href="https://example.com" target="_blank" rel="noopener noreferrer">在线演示 ↗</a>
+            </div>
+          </article>
+
+          <article class="project-card card reveal">
+            <div class="project-thumb" aria-hidden="true">📱</div>
+            <h3>作品二名称</h3>
+            <p>用一两句话描述这个作品做了什么、有什么亮点，或者贴一条简短的作品说明。</p>
+            <div class="project-tags">
+              <span class="tag">技术栈 A</span>
+              <span class="tag">技术栈 B</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/xuexi10" target="_blank" rel="noopener noreferrer">源码 ↗</a>
+            </div>
+          </article>
+
+          <article class="project-card card reveal">
+            <div class="project-thumb" aria-hidden="true">⚙️</div>
+            <h3>作品三名称</h3>
+            <p>用一两句话描述这个作品做了什么、有什么亮点，或者贴一条简短的作品说明。</p>
+            <div class="project-tags">
+              <span class="tag">技术栈 A</span>
+              <span class="tag">技术栈 B</span>
+              <span class="tag">技术栈 C</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/xuexi10" target="_blank" rel="noopener noreferrer">源码 ↗</a>
+              <a href="https://example.com" target="_blank" rel="noopener noreferrer">在线演示 ↗</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 联系我 ============ -->
+    <section class="section section-alt" id="contact">
+      <div class="container">
+        <h2 class="section-title">联系我</h2>
+        <p class="section-subtitle">Contact</p>
+
+        <div class="card contact-card reveal">
+          <p class="contact-intro">
+            如果你对我的作品感兴趣，或者有合作、招聘、交流的想法，欢迎随时联系我。
+            我会尽快回复你的消息。
+          </p>
+          <div class="contact-actions">
+            <a class="btn btn-primary" href="mailto:you@example.com">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                <path d="m22 7-10 6L2 7"></path>
+              </svg>
+              发送邮件
+            </a>
+            <a class="btn btn-ghost" href="https://github.com/xuexi10" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.53-1.32-1.28-1.67-1.28-1.67-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.75 2.69 1.25 3.34.95.1-.74.4-1.25.72-1.53-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.16 1.18a11 11 0 0 1 5.76 0c2.2-1.49 3.16-1.18 3.16-1.18.62 1.59.23 2.76.11 3.05.73.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12v3.14c0 .3.21.66.8.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/>
+              </svg>
+              GitHub
+            </a>
+          </div>
+          <ul class="contact-list">
+            <li>邮箱：<a href="mailto:you@example.com">you@example.com</a></li>
+            <li>GitHub：<a href="https://github.com/xuexi10" target="_blank" rel="noopener noreferrer">github.com/xuexi10</a></li>
+            <li>博客：<a href="https://blog.example.com" target="_blank" rel="noopener noreferrer">blog.example.com</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Astro · 用 ❤️ 和 HTML/CSS/JS 制作</p>
+      <p class="footer-links">
+        <a href="#home">回到顶部</a>
+        <a href="https://github.com/xuexi10" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="back-to-top" type="button" aria-label="回到顶部">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="m18 15-6-6-6 6"></path>
+    </svg>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
